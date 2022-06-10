@@ -6,23 +6,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>RealEstate.mk | Real Estate Properties Macedonia</title>
-    <meta content="Real Estate, Pro" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
+    <meta content="Real Estate Properties in North Macedonia" name="description">
+    <meta content="real estate north macedonia sale macedonia oh estate listings macedonia homes rent estate agents apartments property macedonia property central macedonia luxury homes estate agency houses skopje jane macedonia macedonian village macedonia rd housing market hills macedonia estate company macedonia ohio open house estate platform office space single family rolling hills party properties view photos oh purchase" name="keywords">
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
     <link href="{{ asset('vendor/animate.css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-    <!-- Main CSS File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
@@ -139,11 +131,11 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link " href="{{ route('index') }}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="about.html">About</a>
+                        <a class="nav-link " href="{{ route('about') }}">About</a>
                     </li>
 
                     <li class="nav-item">
@@ -201,10 +193,10 @@
                     <nav class="nav-footer">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a href="#">• Home</a>
+                                <a href="{{ route('index') }}">• Home</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">• About</a>
+                                <a href="{{ route('about') }}">• About</a>
                             </li>
                             <li class="list-inline-item">
                                 <a href="#">• Properties for sale</a>
@@ -226,18 +218,15 @@
                 </div>
             </div>
         </div>
-    </footer><!-- End  Footer -->
+    </footer>
 
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
-    <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
-
-    <!-- Template Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
 
 </body>

@@ -13,15 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Front-End Page Views
+Route::view('/', 'frontend.index')->name('index');
+Route::view('about', 'frontend.about')->name('about');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//delete when not needed
-Route::get('/header', function () {
-    return view('layouts.main');
-});
