@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Front-End Page Views
 Route::view('/', 'frontend.index')->name('index');
 Route::view('about', 'frontend.about')->name('about');
+Route::view('contact', 'frontend.contact')->name('contact');
 
 Auth::routes();
 
