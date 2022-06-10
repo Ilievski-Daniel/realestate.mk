@@ -147,7 +147,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="contact.html">Contact</a>
+                        <a class="nav-link " href="{{ route('contact') }}">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -205,7 +205,7 @@
                                 <a href="#">• Properties for rent</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">• Contact</a>
+                                <a href="{{ route('contact') }}">• Contact</a>
                             </li>
                         </ul>
                     </nav>

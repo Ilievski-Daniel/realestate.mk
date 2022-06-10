@@ -35,38 +35,55 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                <form action="{{ route('contact_message') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <div class="form-group">
-                                                <input type="text" name="name"
+                                                <input type="text" name="name" value="{{ old('name') }}"
                                                     class="form-control form-control-lg form-control-a"
                                                     placeholder="Your Name">
                                             </div>
+                                            @error('name')
+                                                <div style="color: red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <div class="form-group">
-                                                <input name="email" type="email"
+                                                <input type="text" name="email" value="{{ old('email') }}"
                                                     class="form-control form-control-lg form-control-a"
                                                     placeholder="Your Email">
                                             </div>
+                                            @error('email')
+                                                <div style="color: red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <div class="form-group">
-                                                <input type="text" name="subject"
+                                                <input type="text" name="subject" value="{{ old('subject') }}"
                                                     class="form-control form-control-lg form-control-a"
                                                     placeholder="Subject">
                                             </div>
+                                            @error('subject')
+                                                <div style="color: red">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-md-12 my-3">
                                             <div class="form-group">
-                                                <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message"></textarea>
+                                                <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message">{{old('message')}}</textarea>
                                             </div>
                                         </div>
-
+                                        @error('message')
+                                            <div class="mb-2" style="color: red">{{ $message }}</div>
+                                        @enderror
                                         <div class="col-md-12 text-center">
-                                            <button type="submit" class="btn btn-a">Send Message</button>
+                                            <input type="submit" value="Send Message" name="submit" class="btn btn-a">
                                         </div>
+                                        @if(session()->has('message'))
+                                            <div class="alert alert-success mb-2 mt-3">
+                                                <center>{{ session()->get('message') }}</center>
+                                            </div>
+                                        @endif
                                     </div>
                                 </form>
                             </div>
