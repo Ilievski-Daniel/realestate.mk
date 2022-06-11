@@ -1,7 +1,55 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+<section class="sign-in">
+    <div style="margin-top: 10vh; margin-bottom: 10vh;" class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{{ asset('img/signin-image.jpg') }}" alt="sing up image"></figure>
+                <a style="text-decoration: none;" href="{{ route('register') }}" class="signup-image-link">Don't have account? Create one!</a>
+            </div>
+
+            <div class="signin-form">
+                <h2 class="form-title">Login</h2>
+                
+                <form method="POST" action="{{ route('login') }}" class="register-form" id="login-form">
+                    @csrf
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Your email"/>
+                        @error('email')
+                            <span style="color: red;" class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="password" id="password" placeholder="Password"/>
+                        @error('password')
+                            <span style="color: red;" class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group form-button">
+                        <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                    </div>
+
+                    <div class="form-group">
+                        <a style="color:black; text-decoration: none;" class="label-agree-term" href="{{ route('password.request') }}">
+                            Forgot password
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +117,4 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div> --}}

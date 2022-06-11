@@ -20,9 +20,7 @@
 
 <body>
 
-    <!-- ======= Property Search Section ======= -->
     <div class="click-closed"></div>
-    <!--/ Form Search Star /-->
     <div class="box-collapse">
         <div class="title-box-d">
             <h3 class="title-d">Search Property</h3>
@@ -31,13 +29,6 @@
         <div class="box-collapse-wrap form">
             <form class="form-a">
                 <div class="row">
-                    <div class="col-md-12 mb-2">
-                        <div class="form-group">
-                            <label class="pb-2" for="Type">Keyword</label>
-                            <input type="text" class="form-control form-control-lg form-control-a"
-                                placeholder="Keyword">
-                        </div>
-                    </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group mt-3">
                             <label class="pb-2" for="Type">Type</label>
@@ -113,9 +104,8 @@
                 </div>
             </form>
         </div>
-    </div><!-- End Property Search Section -->>
+    </div>
 
-    <!-- ======= Header/Navbar ======= -->
     <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
         <div class="container">
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
@@ -139,11 +129,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="property-grid.html">Properties for sale</a>
+                        <a class="nav-link " href="{{ route('properties') }}?agreement=sale">Properties for sale</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="blog-grid.html">Properties for rent</a>
+                        <a class="nav-link " href="{{ route('properties') }}?agreement=rent">Properties for rent</a>
                     </li>
 
                     <li class="nav-item">
@@ -156,9 +146,23 @@
                 data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
                 <i class="bi bi-search"></i>
             </button>
-
+            @if (Auth::check()) 
+                <a href="{{ route('login') }}" style="margin-left: 2%;">
+                    <button type="button"  class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+                        data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+                        <i class="bi bi-person-check-fill"></i>
+                    </button>
+                </a>
+            @else 
+            <a href="{{ route('login') }}" style="margin-left: 2%;">
+                <button type="button"  class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+                    data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+                    <i class="bi bi-person-circle"></i>
+                </button>
+            </a>
+            @endif
         </div>
-    </nav><!-- End Header/Navbar -->
+    </nav>
 
     @yield('content')
 
@@ -199,10 +203,10 @@
                                 <a href="{{ route('about') }}">• About</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">• Properties for sale</a>
+                                <a href="{{ route('properties') }}?agreement=sale">• Properties for sale</a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#">• Properties for rent</a>
+                                <a href="{{ route('properties') }}?agreement=rent">• Properties for rent</a>
                             </li>
                             <li class="list-inline-item">
                                 <a href="{{ route('contact') }}">• Contact</a>

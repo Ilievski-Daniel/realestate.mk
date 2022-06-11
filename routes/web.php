@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Mail\SendContactMessage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +19,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Front-End Page Views
-Route::view('/', 'frontend.index')->name('index');
+Route::get('/', [App\Http\Controllers\PropertyController::class, 'home'])->name('index');
+
 Route::view('about', 'frontend.about')->name('about');
 Route::view('contact', 'frontend.contact')->name('contact');
+Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('properties');
 
 // Send email thru the contact form 
 Route::post('contact_message', [App\Http\Controllers\ContactsController::class, 'contact'])->name('contact_message');

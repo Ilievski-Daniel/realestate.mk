@@ -21,7 +21,7 @@
                                             <br> For Sale
                                         </h1>
                                         <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Properties for sale</span></a>
+                                            <a href="{{ route('properties') }}?agreement=sale"><span class="price-a">Properties for sale</span></a>
                                         </p>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                             <br> For Rent
                                         </h1>
                                         <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Properties for rent</span></a>
+                                            <a href="{{ route('properties') }}?agreement=rent"><span class="price-a">Properties for rent</span></a>
                                         </p>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                             <br> We are here!
                                         </h1>
                                         <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Contact us</span></a>
+                                            <a href="{{ route('contact') }}"><span class="price-a">Contact us</span></a>
                                         </p>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                 </p>
                             </div>
                             <div class="card-footer-c">
-                                <a href="#" class="link-c link-icon">Search all properties
+                                <a href="{{ route('properties') }}?agreement=any" class="link-c link-icon">Search all properties
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -178,7 +178,7 @@
                                 </p>
                             </div>
                             <div class="card-footer-c">
-                                <a href="#" class="link-c link-icon">Get in touch
+                                <a href="{{ route('contact') }}" class="link-c link-icon">Get in touch
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -186,9 +186,8 @@
                     </div>
                 </div>
             </div>
-        </section><!-- End Services Section -->
+        </section>
 
-        <!-- ======= Latest Properties Section ======= -->
         <section class="section-property section-t8">
             <div class="container">
                 <div class="row">
@@ -198,7 +197,7 @@
                                 <h2 class="title-a">Latest Properties</h2>
                             </div>
                             <div class="title-link">
-                                <a href="property-grid.html">All Properties
+                                <a href="{{ route('properties') }}?agreement=any">All Properties
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -208,7 +207,7 @@
 
                 <div id="property-carousel" class="swiper">
                     <div class="swiper-wrapper">
-
+                        @foreach($properties as $property)
                         <div class="carousel-item-b swiper-slide">
                             <div class="card-box-a card-shadow">
                                 <div class="img-box-a">
@@ -219,34 +218,34 @@
                                     <div class="card-overlay-a-content">
                                         <div class="card-header-a">
                                             <h2 class="card-title-a">
-                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">Title
+                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">{{$property->title}}
                                                 </h1>
                                             </h2>
                                         </div>
                                         <div class="card-body-a">
                                             <div class="price-box d-flex">
-                                                <span class="price-a">rent | $ 12.000</span>
+                                                <span class="price-a">{{$property->agreement}} | € {{ $property->price}}</span>
                                             </div>
                                         </div>
                                         <div class="card-footer-a">
                                             <ul class="card-info d-flex justify-content-around">
                                                 <li>
                                                     <h4 class="card-info-title">Area</h4>
-                                                    <span>340m
-                                                        <sup>2</sup>
+                                                    <span>{{$property->area}}
+                                                        m<sup>2</sup>
                                                     </span>
                                                 </li>
                                                 <li>
-                                                    <h4 class="card-info-title">Beds</h4>
-                                                    <span>2</span>
+                                                    <h4 class="card-info-title">Type</h4>
+                                                    <span>{{$property->type}}</span>
                                                 </li>
                                                 <li>
-                                                    <h4 class="card-info-title">Baths</h4>
-                                                    <span>4</span>
+                                                    <h4 class="card-info-title">Rooms</h4>
+                                                    <span>{{$property->rooms}}</span>
                                                 </li>
                                                 <li>
-                                                    <h4 class="card-info-title">Garages</h4>
-                                                    <span>1</span>
+                                                    <h4 class="card-info-title">Status</h4>
+                                                    <span>{{$property->status}}</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -254,235 +253,11 @@
                                 </div>
                             </div>
                         </div><!-- End carousel item -->
-
-                        <div class="carousel-item-b swiper-slide">
-                            <div class="card-box-a card-shadow">
-                                <div class="img-box-a">
-                                    <img src="{{ asset('img/property-3.jpg') }} "
-                                        alt="North Macedonia Properties for renting or Properties for sale"
-                                        class="img-a img-fluid">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="card-overlay-a-content">
-                                        <div class="card-header-a">
-                                            <h2 class="card-title-a">
-                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">Title
-                                                </h1>
-                                            </h2>
-                                        </div>
-                                        <div class="card-body-a">
-                                            <div class="price-box d-flex">
-                                                <span class="price-a">rent | $ 12.000</span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer-a">
-                                            <ul class="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 class="card-info-title">Area</h4>
-                                                    <span>340m
-                                                        <sup>2</sup>
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Beds</h4>
-                                                    <span>2</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Baths</h4>
-                                                    <span>4</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Garages</h4>
-                                                    <span>1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End carousel item -->
-
-                        <div class="carousel-item-b swiper-slide">
-                            <div class="card-box-a card-shadow">
-                                <div class="img-box-a">
-                                    <img src="{{ asset('img/property-7.jpg') }}" alt="" class="img-a img-fluid">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="card-overlay-a-content">
-                                        <div class="card-header-a">
-                                            <h2 class="card-title-a">
-                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">Title
-                                                </h1>
-                                            </h2>
-                                        </div>
-                                        <div class="card-body-a">
-                                            <div class="price-box d-flex">
-                                                <span class="price-a">rent | $ 12.000</span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer-a">
-                                            <ul class="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 class="card-info-title">Area</h4>
-                                                    <span>340m
-                                                        <sup>2</sup>
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Beds</h4>
-                                                    <span>2</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Baths</h4>
-                                                    <span>4</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Garages</h4>
-                                                    <span>1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End carousel item -->
-
-                        <div class="carousel-item-b swiper-slide">
-                            <div class="card-box-a card-shadow">
-                                <div class="img-box-a">
-                                    <img src="{{ asset('img/property-10.jpg') }}" alt="" class="img-a img-fluid">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="card-overlay-a-content">
-                                        <div class="card-header-a">
-                                            <h2 class="card-title-a">
-                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">Title
-                                                    Title Title Title Title Title Title Title</h1>
-                                            </h2>
-                                        </div>
-                                        <div class="card-body-a">
-                                            <div class="price-box d-flex">
-                                                <span class="price-a">rent | $ 12.000</span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer-a">
-                                            <ul class="card-info d-flex justify-content-around">
-                                                <li>
-                                                    <h4 class="card-info-title">Area</h4>
-                                                    <span>340m
-                                                        <sup>2</sup>
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Beds</h4>
-                                                    <span>2</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Baths</h4>
-                                                    <span>4</span>
-                                                </li>
-                                                <li>
-                                                    <h4 class="card-info-title">Garages</h4>
-                                                    <span>1</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End carousel item -->
+                        @endforeach
                     </div>
                 </div>
                 <div class="propery-carousel-pagination carousel-pagination mb-2"></div>
-
             </div>
-        </section><!-- End Latest Properties Section -->
-
-        <!-- ======= Testimonials Section ======= -->
-        {{-- <section class="section-testimonials section-t8 nav-arrow-a">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="title-wrap d-flex justify-content-between">
-                            <div class="title-box">
-                                <h2 class="title-a">Testimonials</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="testimonial-carousel" class="swiper">
-                    <div class="swiper-wrapper">
-
-                        <div class="carousel-item-a swiper-slide">
-                            <div class="testimonials-box">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('img/testimonial-1.jpg') }}" alt="Client Testemonial"
-                                                class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="testimonial-ico">
-                                            <i class="bi bi-chat-quote-fill"></i>
-                                        </div>
-                                        <div class="testimonials-content">
-                                            <p class="testimonial-text">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis,
-                                                cupiditate ea nam praesentium
-                                                debitis hic ber quibusdam
-                                                voluptatibus officia expedita corpori.
-                                            </p>
-                                        </div>
-                                        <div class="testimonial-author-box">
-                                            <img src="{{ asset('img/mini-testimonial-1.jpg') }}" alt=""
-                                                class="testimonial-avatar">
-                                            <h5 class="testimonial-author">Albert & Erika</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End carousel item -->
-
-                        <div class="carousel-item-a swiper-slide">
-                            <div class="testimonials-box">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="testimonial-img">
-                                            <img src="{{ asset('img/testimonial-2.jpg') }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="testimonial-ico">
-                                            <i class="bi bi-chat-quote-fill"></i>
-                                        </div>
-                                        <div class="testimonials-content">
-                                            <p class="testimonial-text">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis,
-                                                cupiditate ea nam praesentium
-                                                debitis hic ber quibusdam
-                                                voluptatibus officia expedita corpori.
-                                            </p>
-                                        </div>
-                                        <div class="testimonial-author-box">
-                                            <img src="{{ asset('img/mini-testimonial-2.jpg') }}" alt=""
-                                                class="testimonial-avatar">
-                                            <h5 class="testimonial-author">Pablo & Emma</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- End carousel item -->
-
-                    </div>
-                </div>
-                <div class="testimonial-carousel-pagination carousel-pagination"></div>
-
-            </div> 
-        </section> --}}
-        <!-- End Testimonials Section -->
-
-    </main><!-- End #main -->
+        </section>
+    </main>
 @endsection
