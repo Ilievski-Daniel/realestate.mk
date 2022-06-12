@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'phone_number'          => [Rule::phone()->country(['MK'])],
             'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'              => ['required', 'string', 'min:8', 'confirmed'],
+            'role'                  => ['required'],
             'password_confirmation' => ['required', 'string', 'min:8'],
             'agree_term'            => ['required'],
         ]);
@@ -69,12 +70,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-        return User::create([
-            'name'              => $data['name'],
-            'last_name'         => $data['last_name'],
-            'phone_number'      => $data['phone_number'],
-            'email'             => $data['email'],
-            'password'          => Hash::make($data['password']),
-        ]);
+        if($data['role'] != '1'){
+            abort(403);
+        } else {
+            return User::create([
+                'name'              => $data['name'],
+                'last_name'         => $data['last_name'],
+                'phone_number'      => $data['phone_number'],
+                'email'             => $data['email'],
+                'password'          => Hash::make($data['password']),
+                'role'              => $data['role'],
+            ]);
+        }
     }
 }
