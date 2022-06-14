@@ -43,9 +43,9 @@
                                     </div>
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
-                                            <span class="price-a">{{$property->agreement}} | € {{$property->price}}/{{$property->payment_type}}</span>
+                                            <span class="price-a">{{$property->agreement}} | € {{$property->price}}/{{$property->payment_duration}}</span>
                                         </div>
-                                        <a href="property-single.html" class="link-a">Location: {{$property->city}}
+                                        <a href="property-single.html" class="link-a">Location: {{$property->location}}
                                             <span class="bi bi-chevron-right"></span>
                                         </a>
                                     </div>

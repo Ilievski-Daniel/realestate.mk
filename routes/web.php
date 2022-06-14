@@ -18,13 +18,14 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Front-End Page Views
+// Front-End Routes
 Route::get('/', [App\Http\Controllers\PropertyController::class, 'home'])->name('index');
-
 Route::view('about', 'frontend.about')->name('about');
-Route::view('contact', 'frontend.contact')->name('contact');
 Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('properties');
-
-// Send email thru the contact form 
+Route::view('contact', 'frontend.contact')->name('contact');
 Route::post('contact_message', [App\Http\Controllers\ContactsController::class, 'contact'])->name('contact_message');
+
+// Back-End Routes
+Route::get('create_property', [App\Http\Controllers\PropertyController::class, 'create'])->name('create_property');
+Route::post('store_property', [App\Http\Controllers\PropertyController::class, 'store'])->name('store_property');
 

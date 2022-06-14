@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Property;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PropertyRequest;
 class PropertyController extends Controller
 {
     public function home(){
@@ -38,7 +40,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        $cities = City::all();
+        return view('backend.create_property', ['cities' => $cities]);
     }
 
     /**
@@ -47,9 +50,20 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropertyRequest $request)
     {
-        //
+        $property = new Property;
+        $property->title = $request->title;
+        $property->type = $request->type;
+        $property->agreement = $request->agreement;
+        $property->price = $request->price;
+        $property->payment_duration = $request->payment_duration;
+        $property->location = $request->location;
+        $property->area = $request->area;
+        $property->rooms = $request->rooms;
+        $property->status = $request->status;
+        $property->save();
+        return redirect()->back()->with('message', 'Property has been added succesfully!');
     }
 
     /**

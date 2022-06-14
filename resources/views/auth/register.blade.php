@@ -72,7 +72,7 @@
                         @enderror
                     </div>
                     <div class="form-group form-button">
-                        <input type="hidden" name="role" value="3">
+                        <input type="hidden" name="role" value="1">
                         <input type="submit" name="submit" id="signup" class="form-submit" value="Register"/>
                     </div>
                 </form>
