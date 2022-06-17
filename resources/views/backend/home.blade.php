@@ -1,5 +1,6 @@
 @extends('layouts.sidepanel')
 @section('content')
+<?php $count = 0 ?>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
@@ -10,7 +11,18 @@
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
-                            <div class="card-body">My properties count: 5</div>
+                            <div class="card-body">My properties count: 
+                                @foreach($userProperties as $userProperty)
+                                @if($userProperty->user_id == auth()->user()->id)
+                                @foreach($properties as $property)
+                                @if($userProperty->id == $property->id)
+                                <?php $count++ ?>
+                                @endif
+                                @endforeach
+                                @endif
+                                @endforeach
+                                {{$count}}
+                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="#">Create new property</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -46,15 +58,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $count = 1 ?>
+                                @foreach($userProperties as $userProperty)
+                                @if($userProperty->user_id == auth()->user()->id)
+
+                                @foreach($properties as $property)
+                                @if($userProperty->id == $property->id)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Skopje Vila NA Vodno</td>
-                                    <td>Skopje</td>
-                                    <td>340m2</td>
-                                    <td>V</td>
-                                    <td>E</td>
-                                    <td>D</td>
+                                    <td>{{ $count++ }}</td>
+                                    <td>{{ $property->title }}</td>
+                                    <td>{{ $property->location}}</td>
+                                    <td>{{ $property->area}}m²</td>
+                                    <td><a href="{{'property/'.$property->id}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>    
+                                    </a></td>
+                                    <td><i class="fas fa-edit"></i></td>
+                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                                 </tr>
+                                @endif
+                                @endforeach
+
+                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

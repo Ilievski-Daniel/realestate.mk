@@ -7,6 +7,9 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PropertyRequest;
+use App\Models\User;
+use App\Models\UserProperty;
+
 class PropertyController extends Controller
 {
     public function home(){
@@ -30,6 +33,7 @@ class PropertyController extends Controller
             ->orderBy('created_at')
             ->get();
         }
+
         return view('frontend.properties', ['properties' => $properties]);
     }
 
@@ -54,6 +58,7 @@ class PropertyController extends Controller
     {
         $property = new Property;
         $property->title = $request->title;
+        $property->description = $request->description;
         $property->type = $request->type;
         $property->agreement = $request->agreement;
         $property->price = $request->price;
@@ -62,8 +67,38 @@ class PropertyController extends Controller
         $property->area = $request->area;
         $property->rooms = $request->rooms;
         $property->status = $request->status;
+        $property->bedrooms = $request->bedrooms;
+        $property->bathrooms = $request->bathrooms;
+        $property->floor = $request->floor;
+        $property->parking = $request->parking;
+        $property->balcony = $request->balcony;
+        $property->air_conditioning = $request->air_conditioning;
+        $property->alarm_system = $request->alarm_system;
+        $property->elevator = $request->elevator;
+        $property->garden = $request->garden;
+        $property->barbeque = $request->barbeque;
+        $property->furniture = $request->furniture;
+        $property->cable_tv = $request->cable_tv;
+        $property->internet = $request->internet;
+        $property->central_heating = $request->central_heating;
+        $property->pet_friendly = $request->pet_friendly;
         $property->save();
+
+        $userId = auth()->user()->id;
+
+        $userProperty = new UserProperty();
+        $userProperty->user_id = $userId;
+        $userProperty->property_id = $property->id;
+        $userProperty->save();
+
         return redirect()->back()->with('message', 'Property has been added succesfully!');
+    }
+
+    public function property($id){
+        $property =     Property::where('id', $id)->firstOrFail();
+        $userProperty = UserProperty::where('property_id', $id)->firstOrFail();
+        $user =         User::where('id', $userProperty->user_id)->firstOrFail();
+        return view('frontend.property', ['property' => $property, 'user' => $user]);       
     }
 
     /**

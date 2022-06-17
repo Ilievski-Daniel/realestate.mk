@@ -44,9 +44,13 @@ class PropertyRequest extends FormRequest
                 'required',
                 Rule::notIn(['any']),
             ],
+            'description'   => 'required|max:250',
             'area'          => 'required|max:20',
             'price'         => 'required|max:20',
-            'rooms'         => 'required'
+            'rooms'         => 'required',
+            'bedrooms'      => 'required',
+            'bathrooms'     => 'required',
+            'floor'         => 'required',
         ];
     }
 

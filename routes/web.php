@@ -24,6 +24,7 @@ Route::view('about', 'frontend.about')->name('about');
 Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('properties');
 Route::view('contact', 'frontend.contact')->name('contact');
 Route::post('contact_message', [App\Http\Controllers\ContactsController::class, 'contact'])->name('contact_message');
+Route::get('property/{id}', [App\Http\Controllers\PropertyController::class, 'property'])->name('property');
 
 // Back-End Routes
 Route::get('create_property', [App\Http\Controllers\PropertyController::class, 'create'])->name('create_property');
