@@ -24,8 +24,8 @@ class SendMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|string|max:50',
-            'subject'   => 'required|string|max:50',
+            'name'      => 'required|string|max:50|alpha',
+            'subject'   => 'required|string|max:50|alpha',
             'message'   => 'required|string|max:250',
             'email'     => 'required|email|',
         ];

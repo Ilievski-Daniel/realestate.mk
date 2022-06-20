@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserProfileRequest;
+use Image;
+
 class UserProfileController extends Controller
 {
     /**
@@ -71,12 +73,22 @@ class UserProfileController extends Controller
      */
     public function update(UserProfileRequest $request)
     {
+        if($request->avatar){
+    		$avatar = $request->file('avatar');
+    		$filename = time() . '.' . $avatar->getClientOriginalExtension();
+    		Image::make($avatar)->resize(500, 500)->save( public_path('/img/avatars/' . $filename ) );
+    	} elseif(isset(auth()->user()->avatar)){
+            $filename = auth()->user()->avatar;
+        } else {
+            $filename = null;
+        }
         User::where('id', auth()->user()->id)
                 ->update(['name' => $request->input('name'),
                          'last_name'=>$request->input('last_name'),
                          'description'  => $request->input('description'),
                          'phone_number' => $request->input('phone_number'),
-                         'email'=>$request->input('email')]
+                         'email'=>$request->input('email'),
+                         'avatar' => $filename]
                         );
 
         return redirect()->back()->with('message', 'Your profile has been updated successfully!');

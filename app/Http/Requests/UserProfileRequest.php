@@ -37,9 +37,9 @@ class UserProfileRequest extends FormRequest
         }
 
         return [
-            'name'                  => ['required', 'string', 'max:50'],
-            'last_name'             => ['required', 'string', 'max:50'],
-            'description'           => 'required|max:250',
+            'name'                  => ['required', 'string', 'max:50', 'alpha'],
+            'last_name'             => ['required', 'string', 'max:50', 'alpha'],
+            'description'           => 'max:250',
             'phone_number'          => [Rule::phone()->country(['MK']), $uniquePhoneNumber],
             'email'                 => ['required', 'string', 'email', 'max:255', $uniqueEmail],
         ];

@@ -38,14 +38,14 @@
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
                                         <h2 class="card-title-a">
-                                            <a href="#">{{$property->title}}</a>
+                                            <a href="property/{{$property->id}}">{{$property->title}}</a>
                                         </h2>
                                     </div>
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
-                                            <span class="price-a">{{$property->agreement}} | € {{$property->price}}/{{$property->payment_duration}}</span>
+                                            <span class="price-a"><a href="property/{{$property->id}}" style="color: white;">{{$property->agreement}} | € {{$property->price}}/{{$property->payment_duration}}</a></span>
                                         </div>
-                                        <a href="property-single.html" class="link-a">Location: {{$property->location}}
+                                        <a href="property/{{$property->id}}" class="link-a">Location: {{$property->location}}
                                             <span class="bi bi-chevron-right"></span>
                                         </a>
                                     </div>

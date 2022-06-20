@@ -218,7 +218,7 @@
                                     <div class="card-overlay-a-content">
                                         <div class="card-header-a">
                                             <h2 class="card-title-a">
-                                                <h1 style="color: white; font-size: 2rem;" href="property-single.html">{{$property->title}}
+                                                <h1 style="color: white; font-size: 2rem;" href="property/{{$property->id}}">{{$property->title}}
                                                 </h1>
                                             </h2>
                                         </div>
@@ -226,7 +226,7 @@
                                             <div class="price-box d-flex">
                                                 <span class="price-a">{{$property->agreement}} | € {{ $property->price}}/{{$property->payment_duration}}</span>
                                             </div>
-                                            <a href="property-single.html" class="link-a">Location: {{$property->location}}
+                                            <a href="property.{{$property->id}}" class="link-a">Location: {{$property->location}}
                                                 <span class="bi bi-chevron-right"></span>
                                             </a>
                                         </div>

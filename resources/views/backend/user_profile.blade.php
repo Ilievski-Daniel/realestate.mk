@@ -9,10 +9,20 @@
             @endif
             <h2>Profile information</h2>
             <hr>
-            <form action="{{ route('update_profile') }}" method="post">
+            <form action="{{ route('update_profile') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div >
+
+                    
                     <div class="row mt-4 mb-4">
+
+                        <div class="col-10 col-md-offset-1 mb-3">
+                            <img @if(!isset($user->avatar)) src="/img/avatars/{{ 'avatar.png' }}" @else src="/img/avatars/{{ $user->avatar }}" @endif style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+                            <h2>{{ $user->name }}'s Profile</h2>
+                                <label>Update Profile Image</label><br>
+                                <input type="file" name="avatar">
+                        </div>
+
                         <div class="col-6 mb-2">
                             <div class="form-group">
                                 <label for="name">First name</label>
