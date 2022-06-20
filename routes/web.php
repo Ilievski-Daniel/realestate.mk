@@ -29,4 +29,5 @@ Route::get('property/{id}', [App\Http\Controllers\PropertyController::class, 'pr
 // Back-End Routes
 Route::get('create_property', [App\Http\Controllers\PropertyController::class, 'create'])->name('create_property');
 Route::post('store_property', [App\Http\Controllers\PropertyController::class, 'store'])->name('store_property');
-
+Route::get('user_profile', [App\Http\Controllers\UserProfileController::class, 'edit'])->name('user_profile');
+Route::post('update_profile', [App\Http\Controllers\UserProfileController::class, 'update'])->name('update_profile');
