@@ -32,12 +32,24 @@
           <div class="col-lg-8">
             <div id="property-single-carousel" class="swiper">
               <div class="swiper-wrapper">
-                <div class="carousel-item-b swiper-slide">
-                  <img style="height: 50vh !important;" src="{{ asset('/img/slide-1.jpg') }}" alt="">
+                <div class="carousel-item-b @if (isset($property->second_image) || isset($property->third_image)) swiper-slide @endif mb-2">
+                  <img style="height: 60vh !important; display: block; margin-left: auto; margin-right: auto; " src="{{ asset('img/property_images/'.$property->featured_image) }}" alt="">
                 </div>
-                <div class="carousel-item-b swiper-slide">
-                  <img style="height: 50vh !important;" src="{{ asset('/img/slide-2.jpg') }}" alt="">
+                @if (isset($property->second_image))
+                <div class="carousel-item-b swiper-slide mb-2">
+                  <img style="height: 60vh !important; display: block; margin-left: auto; margin-right: auto;" src="{{ asset('img/property_images/'.$property->second_image) }}" alt="">
                 </div>
+                @endif
+                @if (isset($property->third_image))
+                <div class="carousel-item-b swiper-slide mb-2">
+                  <img style="height: 60vh !important; display: block; margin-left: auto; margin-right: auto;" src="{{ asset('img/property_images/'.$property->third_image) }}" alt="">
+                </div>
+                @endif
+                @if (isset($property->fourth_image))
+                <div class="carousel-item-b swiper-slide mb-2">
+                  <img style="height: 60vh !important; display: block; margin-left: auto; margin-right: auto;" src="{{ asset('img/property_images/'.$property->fourth_image) }}" alt="">
+                </div>
+                @endif
               </div>
             </div>
             <div class="property-single-carousel-pagination carousel-pagination"></div>
@@ -160,15 +172,16 @@
             </div>
             <div class="row">
               <div class="col-md-6 col-lg-4">
-                <img style="height: 35vh;" src="{{ asset('/img/agent-4.jpg') }}" alt="" class="img-fluid">
+                <img style="height: 25vh; border-radius: 50%;" 
+                  @if (isset($user->avatar)) src="{{ asset('/img/avatars/'.$user->avatar) }}" @else
+                  src="{{ asset('/img/avatars/avatar.png') }}"
+                  @endif alt="" class="img-fluid">
               </div>
-              <div class="col-md-6 col-lg-4 mr-3">
+              <div class="col-md-6 col-lg-4">
                 <div class="property-agent">
                   <h4 class="title-agent">{{$user->name}} {{$user->last_name}}</h4>
                   <p class="color-text-a">
-                    Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                    dui. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim.
+                    {{$user->description}}
                   </p>
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
@@ -188,20 +201,20 @@
                     <div class="row">
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
+                          <input type="text" class="form-control form-control-a" id="inputName" placeholder="Name *">
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                          <input type="email" class="form-control form-control-a" id="inputEmail1" placeholder="Email *">
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
+                          <textarea id="textMessage" class="form-control" placeholder="Message *" name="message" rows="5"></textarea>
                         </div>
                       </div>
-                      <div class="col-md-12 mt-3">
+                      <div class="col-md-12 mt-2">
                         <button type="submit" class="btn btn-a">Send Message</button>
                       </div>
                     </div>

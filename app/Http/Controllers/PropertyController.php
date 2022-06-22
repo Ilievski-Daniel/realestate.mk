@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PropertyRequest;
 use App\Models\User;
 use App\Models\UserProperty;
+use Intervention\Image\Facades\Image;
 
 class PropertyController extends Controller
 {
@@ -56,6 +57,46 @@ class PropertyController extends Controller
      */
     public function store(PropertyRequest $request)
     {
+        if($request->featured_image){
+    		$featured_image = $request->file('featured_image');
+    		$filename = 'featured' . '.' . time() . '.' . $featured_image->getClientOriginalExtension();
+    		Image::make($featured_image)->save( public_path('/img/property_images/' . $filename ) );
+    	} elseif(isset(auth()->user()->featured_image)){
+            $filename = auth()->user()->featured_image;
+        } else {
+            $filename = null;
+        }
+
+        if($request->second_image){
+    		$second_image = $request->file('second_image');
+    		$secondImageFilename = 'second' . '.' . time() . '.' . $second_image->getClientOriginalExtension();
+    		Image::make($second_image)->save( public_path('/img/property_images/' . $secondImageFilename ) );
+    	} elseif(isset(auth()->user()->second_image)){
+            $secondImageFilename = auth()->user()->second_image;
+        } else {
+            $secondImageFilename = null;
+        }
+
+        if($request->third_image){
+    		$third_image = $request->file('third_image');
+    		$thirdImageFilename = 'third' . '.' . time() . '.' . $third_image->getClientOriginalExtension();
+    		Image::make($third_image)->save( public_path('/img/property_images/' . $thirdImageFilename ) );
+    	} elseif(isset(auth()->user()->third_image)){
+            $thirdImageFilename = auth()->user()->third_image;
+        } else {
+            $thirdImageFilename = null;
+        }
+
+        if($request->fourth_image){
+    		$fourth_image = $request->file('fourth_image');
+    		$fourthImageFilename = 'forth' . '.' . time() . '.' . $fourth_image->getClientOriginalExtension();
+    		Image::make($fourth_image)->save( public_path('/img/property_images/' . $fourthImageFilename ) );
+    	} elseif(isset(auth()->user()->fourth_image)){
+            $fourthImageFilename = auth()->user()->fourth_image;
+        } else {
+            $fourthImageFilename = null;
+        }
+
         $property = new Property;
         $property->title = $request->title;
         $property->description = $request->description;
@@ -82,6 +123,10 @@ class PropertyController extends Controller
         $property->internet = $request->internet;
         $property->central_heating = $request->central_heating;
         $property->pet_friendly = $request->pet_friendly;
+        $property->featured_image = $filename;
+        $property->second_image = $secondImageFilename;
+        $property->third_image  = $thirdImageFilename;
+        $property->fourth_image = $fourthImageFilename;
         $property->save();
 
         $userId = auth()->user()->id;

@@ -32,7 +32,7 @@
                     <div class="col-md-4">
                         <div class="card-box-a card-shadow">
                             <div class="img-box-a">
-                                <img src="{{ asset('img/property-2.jpg') }}" alt="" class="img-a img-fluid">
+                                <img style="height: 35vh !important; display: block; margin-left: auto; margin-right: auto;" src="{{ asset('img/property_images/'.$property->featured_image) }}" alt="{{$property->title}} in {{$property->location}}" class="img-a img-fluid">
                             </div>
                             <div class="card-overlay">
                                 <div class="card-overlay-a-content">

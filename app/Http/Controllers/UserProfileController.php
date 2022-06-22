@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserProfileRequest;
-use Image;
+use Intervention\Image\Facades\Image;
 
 class UserProfileController extends Controller
 {
@@ -76,7 +76,7 @@ class UserProfileController extends Controller
         if($request->avatar){
     		$avatar = $request->file('avatar');
     		$filename = time() . '.' . $avatar->getClientOriginalExtension();
-    		Image::make($avatar)->resize(500, 500)->save( public_path('/img/avatars/' . $filename ) );
+    		Image::make($avatar)->save( public_path('/img/avatars/' . $filename ) );
     	} elseif(isset(auth()->user()->avatar)){
             $filename = auth()->user()->avatar;
         } else {

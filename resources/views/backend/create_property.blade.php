@@ -9,11 +9,11 @@
             @endif
             <h2>General information</h2>
             <hr>
-            <form action="{{ route('store_property') }}" method="post">
+            <form action="{{ route('store_property') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div >
                     <div class="row mt-4 mb-4">
-                        <div class="col-6 mb-2">
+                        <div class="col-sm-6 col-12 mb-2">
                             <div class="form-group">
                                 <label for="title">Property title</label>
                                 <input type="text" name="title" value="{{ old('title') }}" class="form-control" id="title" aria-describedby="title" placeholder="Family home with garden">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6 mb-2">
+                        <div class="col-sm-6 col-12 mb-2">
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="description">Description</label>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6 mb-3">
+                        <div class="col-sm-6 col-12 mb-3">
                             <label for="price">Price</label>
 
                             <div class="input-group">
@@ -68,7 +68,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-6 mb-3">
+                        <div class="col-sm-6 col-12 mb-3">
                             <div class="form-group">
                                 <label for="location">Location</label>
                                 <select name="location" class="form-select" aria-label="location">
@@ -85,8 +85,49 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- <div class="col-lg-2 col-12 col-md-offset-1 mt-2">
+                            <img src="/img/avatars/{{ 'avatar.png' }}" style="width:150px; height:150px; margin: auto; display: block;">
+                        </div>
+                        <div class="col-lg-4 col-12 col-md-offset-1 mb-3"><br><br><br>
+                            <input class="form-control" type="file">
+                        </div> --}}
+
+                        <div class="col-sm-6 col-12 mb-2 mt-2">
+                            <label for="featured_image" class="form-label">Featured property image</label>
+                            <input name="featured_image" class="form-control" id="featured_image" type="file">
+                            @error('featured_image')
+                                <strong style="display: inline-block; color: red;">{{ $message }}</strong>
+                            @enderror
+                        </div>
                         
-                        <h2>Property information</h2>
+
+                        <div class="col-sm-6 col-12 mb-2 mt-2">
+                            <label for="second_image" class="form-label">Second property image</label>
+                            <input name="second_image" class="form-control" id="second_image" type="file">
+                            @error('second_image')
+                                <strong style="display: inline-block; color: red;">{{ $message }}</strong>
+                            @enderror
+                        </div>
+
+                        <div class="col-sm-6 col-12 mb-2 mt-2">
+                            <label for="third_image" class="form-label">Third property image</label>
+                            <input name="third_image" class="form-control" id="third_image" type="file">
+                            @error('third_image')
+                                <strong style="display: inline-block; color: red;">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        
+
+                        <div class="col-sm-6 col-12 mb-2 mt-2">
+                            <label for="fourth_image" class="form-label">Fourth property image</label>
+                            <input name="fourth_image" class="form-control" id="fourth_image" type="file">
+                            @error('fourth_image')
+                                <strong style="display: inline-block; color: red;">{{ $message }}</strong>
+                            @enderror
+                        </div>
+                        
+                        <h2 class="mt-2">Property information</h2>
                         <hr>
 
                         <div class="col-6 mb-2">

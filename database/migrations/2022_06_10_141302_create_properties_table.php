@@ -40,6 +40,10 @@ return new class extends Migration
             $table->integer('internet')->nullable();
             $table->integer('central_heating')->nullable();
             $table->integer('pet_friendly')->nullable();
+            $table->string('featured_image')->nullable();
+            $table->string('second_image')->nullable();
+            $table->string('third_image')->nullable();
+            $table->string('fourth_image')->nullable();
             $table->timestamps();
         });
     }

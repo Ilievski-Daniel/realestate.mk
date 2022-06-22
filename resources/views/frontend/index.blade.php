@@ -208,10 +208,11 @@
                 <div id="property-carousel" class="swiper">
                     <div class="swiper-wrapper">
                         @foreach($properties as $property)
+
                         <div class="carousel-item-b swiper-slide">
                             <div class="card-box-a card-shadow">
                                 <div class="img-box-a">
-                                    <img src="{{ asset('img/property-6.jpg') }} "
+                                    <img style="height: 35vh !important; display: block; margin-left: auto; margin-right: auto;" src="{{ asset('img/property_images/'.$property->featured_image) }}"
                                         alt="Real Estate For Sale Or Rent In North Macedonia" class="img-a img-fluid">
                                 </div>
                                 <div class="card-overlay">
