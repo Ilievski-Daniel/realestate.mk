@@ -17,7 +17,7 @@
                                             <br>
                                         </h1>
                                         <h1 class="intro-title mb-4 ">
-                                            <span class="color-b">204 </span> Properties
+                                            <span class="color-b">{{$countsSale}} </span> Properties
                                             <br> For Sale
                                         </h1>
                                         <p class="intro-subtitle intro-price">
@@ -41,7 +41,7 @@
                                     <div class="intro-body">
                                         <h1 class="intro-title-top">📍 North Macedonia</h1>
                                         <h1 class="intro-title mb-4">
-                                            <span class="color-b">204 </span> Properties
+                                            <span class="color-b">{{$countsRent}} </span> Properties
                                             <br> For Rent
                                         </h1>
                                         <p class="intro-subtitle intro-price">

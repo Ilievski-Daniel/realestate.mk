@@ -14,8 +14,19 @@ use Intervention\Image\Facades\Image;
 class PropertyController extends Controller
 {
     public function home(){
+        $counts = Property::all();
+        $countsRent = 0;
+        $countsSale = 0;
+        foreach ($counts as $count) {
+            if($count->agreement == 'Rent'){
+                $countsRent++;
+            } elseif($count->agreement == 'Sale'){
+                $countsSale++;
+            }
+          }
+
         $properties = Property::latest()->take(5)->get();
-        return view('frontend.index', ['properties' => $properties]);       
+        return view('frontend.index', ['properties' => $properties, 'countsSale' => $countsSale, 'countsRent' => $countsRent]);       
     }
 
     /**
