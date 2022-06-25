@@ -35,7 +35,12 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <form action="{{ route('contact_message') }}" method="POST">
+                                @if(Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}}
+                                    </div>
+                                @endif
+                                <form action="{{ route('contact_us') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 mb-3">

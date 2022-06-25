@@ -22,9 +22,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\PropertyController::class, 'home'])->name('index');
 Route::view('about', 'frontend.about')->name('about');
 Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('properties');
-Route::view('contact', 'frontend.contact')->name('contact');
-Route::post('contact_message', [App\Http\Controllers\ContactsController::class, 'contact'])->name('contact_message');
 Route::get('property/{id}', [App\Http\Controllers\PropertyController::class, 'property'])->name('property');
+Route::view('contact', 'frontend.contact')->name('contact');
+Route::post('contact_us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact_us');
 
 // Back-End Routes
 Route::get('create_property', [App\Http\Controllers\PropertyController::class, 'create'])->name('create_property');
