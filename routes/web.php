@@ -21,10 +21,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Front-End Routes
 Route::get('/', [App\Http\Controllers\PropertyController::class, 'home'])->name('index');
-Route::view('about', 'frontend.about')->name('about');
+Route::get('about', [App\Http\Controllers\PropertyController::class, 'about'])->name('about');
 Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('properties');
 Route::get('property/{id}', [App\Http\Controllers\PropertyController::class, 'property'])->name('property');
-Route::view('contact', 'frontend.contact')->name('contact');
+Route::get('contact', [App\Http\Controllers\PropertyController::class, 'contact'])->name('contact');
 Route::post('contact_us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact_us');
 Route::get('search_properties', [App\Http\Controllers\PropertyController::class, 'search'])->name('search_properties');
 

@@ -39,6 +39,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        $cities = City::all();
+
         if(empty($_GET['agreement'])){
             return view('frontend.index');
         } else if($_GET['agreement'] == 'any'){
@@ -47,7 +49,17 @@ class PropertyController extends Controller
             $properties = Property::where('agreement' , $_GET['agreement'])->paginate(6);
         }
 
-        return view('frontend.properties', ['properties' => $properties]);
+        return view('frontend.properties', ['properties' => $properties, 'cities' => $cities]);
+    }
+
+    public function about(){
+        $cities = City::all();
+        return view('frontend.about', ['cities' => $cities]);
+    }
+
+    public function contact(){
+        $cities = City::all();
+        return view('frontend.contact', ['cities' => $cities]);
     }
 
     /**
@@ -152,10 +164,11 @@ class PropertyController extends Controller
     }
 
     public function property($id){
+        $cities = City::all();
         $property =     Property::where('id', $id)->firstOrFail();
         $userProperty = UserProperty::where('property_id', $id)->firstOrFail();
         $user =         User::where('id', $userProperty->user_id)->firstOrFail();
-        return view('frontend.property', ['property' => $property, 'user' => $user]);       
+        return view('frontend.property', ['property' => $property, 'user' => $user, 'cities' => $cities]);       
     }
 
     /**
