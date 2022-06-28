@@ -148,7 +148,7 @@
                                 </p>
                             </div>
                             <div class="card-footer-c">
-                                <a href="#" class="link-c link-icon">Register as an agent
+                                <a href="{{route('register')}}" class="link-c link-icon">Register as an agent
                                     <span class="bi bi-chevron-right"></span>
                                 </a>
                             </div>
@@ -205,7 +205,7 @@
                     </div>
                 </div>
 
-                <div id="property-carousel" class="swiper">
+                <div id="property-carousel" class="swiper mb-4">
                     <div class="swiper-wrapper">
                         @foreach($properties as $property)
 
@@ -227,7 +227,7 @@
                                             <div class="price-box d-flex">
                                                 <span class="price-a">{{$property->agreement}} | € {{ $property->price}}/{{$property->payment_duration}}</span>
                                             </div>
-                                            <a href="property.{{$property->id}}" class="link-a">Location: {{$property->location}}
+                                            <a href="property/{{$property->id}}" class="link-a">Location: {{$property->location}}
                                                 <span class="bi bi-chevron-right"></span>
                                             </a>
                                         </div>

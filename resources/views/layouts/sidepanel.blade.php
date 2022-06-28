@@ -70,7 +70,7 @@
                                 <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                                     data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">All messages</a>
+                                        <a class="nav-link" href="{{ route('user_messages') }}">All messages</a>
                                     </nav>
                                 </div>
                     </div>

@@ -25,15 +25,14 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
+            'name'      => 'required',
+            'email'     => 'required|email',
             'subject'   => 'required|max:80',
-            'message' => 'required|max:255'
+            'message'   => 'required|max:255'
         ]);
   
         Contact::create($request->all());
   
-        return redirect()->back()
-                         ->with(['success' => 'Your message has been sent successfully!']);
+        return redirect()->back()->with(['success' => 'Your message has been sent successfully!']);
     }
 }

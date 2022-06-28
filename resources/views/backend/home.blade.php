@@ -12,16 +12,7 @@
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body">My properties count: 
-                                @foreach($userProperties as $userProperty)
-                                @if($userProperty->user_id == auth()->user()->id)
-                                @foreach($properties as $property)
-                                @if($userProperty->id == $property->id)
-                                <?php $count++ ?>
-                                @endif
-                                @endforeach
-                                @endif
-                                @endforeach
-                                {{$count}}
+                                {{($propertyCount)}}
                              </div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="{{ route('create_property') }}">Create new property</a>
@@ -31,14 +22,21 @@
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
-                            <div class="card-body">Messages count: 5</div>
+                            <div class="card-body">Messages count: {{$messageUsersCount}}</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">View all messages</a>
+                                <a class="small text-white stretched-link" href="{{ route('create_property') }}">View all messages</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
@@ -61,9 +59,9 @@
                                 <?php $count = 1 ?>
                                 @foreach($userProperties as $userProperty)
                                 @if($userProperty->user_id == auth()->user()->id)
-
                                 @foreach($properties as $property)
-                                @if($userProperty->id == $property->id)
+                                @if($property->id == $userProperty->property_id)
+
                                 <tr>
                                     <td>{{ $count++ }}</td>
                                     <td>{{ $property->title }}</td>
@@ -72,12 +70,21 @@
                                     <td><a href="{{'property/'.$property->id}}">
                                         <i class="fa fa-eye" aria-hidden="true"></i>    
                                     </a></td>
-                                    <td><i class="fas fa-edit"></i></td>
-                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                    <td>
+                                        <form method="GET" action='/edit_property/{{ $property->id }}'>
+                                            @csrf
+                                                <button style="border: none; background-color: white;" type="submit" class="submitbtn" name="edit"><i style="color: green;" class="fas fa-edit"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action='/property/{{ $property->id }}'>
+                                            @csrf
+                                                <button style="border: none; background-color: white;" type="submit" class="submitbtn" name="delete"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endif
                                 @endforeach
-
                                 @endif
                                 @endforeach
                             </tbody>

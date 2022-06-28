@@ -13,10 +13,10 @@
             <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <a href="index.html">Home</a>
+                  <a href="{{route('index')}}">Home</a>
                 </li>
                 <li class="breadcrumb-item">
-                  <a href="property-grid.html">Properties</a>
+                  <a href="/properties?agreement=any">Properties</a>
                 </li>
                 <p></p>
               </ol>
@@ -186,34 +186,51 @@
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
                       <strong>Phone Number:</strong>
-                      <span class="color-text-a">+389 {{$user->phone_number}}</span>
+                      <span class="color-text-a"><a href="tel:0{{$user->phone_number}}">+389 {{$user->phone_number}}</a></span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Email:</strong>
-                      <span class="color-text-a">{{$user->email}}</span>
+                      <span class="color-text-a"><a href="mailto:{{$user->email}}">{{$user->email}}</a></span>
                     </li>
                   </ul>
                 </div>
               </div>
               <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
-                  <form class="form-a">
+                  <form action="{{ route('message_user') }}" method="POST" class="form-a">
+                    @csrf
                     <div class="row">
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <input type="text" class="form-control form-control-a" id="inputName" placeholder="Name *">
+                          <input type="text" class="form-control form-control-a" name="name" placeholder="Name*" value="{{ old('name') }}">
+                          @error('name')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <input type="email" class="form-control form-control-a" id="inputEmail1" placeholder="Email *">
+                          <input type="text" class="form-control form-control-a" name="email" placeholder="Email*" value="{{ old('email') }}">
+                          @error('email')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Message *" name="message" rows="5"></textarea>
+                          <textarea class="form-control" placeholder="Message*" name="message" rows="5">{{ old('message') }}</textarea>
+                          @error('message')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                          @enderror
                         </div>
                       </div>
+                      <input type="hidden" name="userId" value="{{$user->id}}">
                       <div class="col-md-12 mt-2">
                         <button type="submit" class="btn btn-a">Send Message</button>
                       </div>
@@ -225,7 +242,7 @@
           </div>
         </div>
       </div>
-    </section><!-- End Property Single-->
+    </section>
 
   </main>
 @endsection

@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <div class="form-group mt-3">
-                            <label class="pb-2" for="Type">Type</label>
+                            <label class="pb-2" for="Type">Agreement</label>
+                            <a href="{{ route('properties') }}?agreement=sale">
                             <select class="form-control form-select form-control-a" id="Type">
                                 <option>All Type</option>
                                 <option>For Rent</option>
@@ -115,7 +116,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <a class="navbar-brand text-brand" href="index.html">RealEstate<span class="color-b">.mk</span></a>
+            <a class="navbar-brand text-brand" href="{{route('index')}}">RealEstate<span class="color-b">.mk</span></a>
 
             <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
                 <ul class="navbar-nav">
