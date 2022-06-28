@@ -13,14 +13,25 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The properties that belong to the user.
+     */
+    public function properties()
+    {
+        return $this->hasMany(Property::class);
+    }
+    
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'phone_number',
         'email',
         'password',
+        'role',
     ];
 
     /**

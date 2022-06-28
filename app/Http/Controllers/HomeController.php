@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Property;
+use App\Models\UserProperty;
+use App\Models\MessageUser;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $properties = Property::all();
+        $userProperties = UserProperty::all();
+
+        $messageUsers = MessageUser::where('user_id', auth()->user()->id)->get();
+        $messageUsersCount = 0;
+        foreach ($messageUsers as $messageUser) {
+            $messageUsersCount++;
+        }
+
+        $userProperties = UserProperty::where('user_id', auth()->user()->id)->get();
+        $propertyCount = 0;
+        foreach ($userProperties as $userProperty) {
+            $propertyCount++;
+        }
+
+        return view('backend.home', ['properties' => $properties, 'userProperties' => $userProperties, 'messageUsersCount' => $messageUsersCount, 'propertyCount' => $propertyCount]);    
     }
 }
