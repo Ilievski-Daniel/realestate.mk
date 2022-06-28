@@ -26,6 +26,7 @@ Route::get('properties', [App\Http\Controllers\PropertyController::class, 'index
 Route::get('property/{id}', [App\Http\Controllers\PropertyController::class, 'property'])->name('property');
 Route::view('contact', 'frontend.contact')->name('contact');
 Route::post('contact_us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact_us');
+Route::get('search_properties', [App\Http\Controllers\PropertyController::class, 'search'])->name('search_properties');
 
 // Back-End Routes
 Route::get('create_property', [App\Http\Controllers\PropertyController::class, 'create'])->name('create_property');

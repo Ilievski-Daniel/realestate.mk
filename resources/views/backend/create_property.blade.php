@@ -193,7 +193,7 @@
                         </div>
 
                         <div class="col-6 mb-3">
-                            <label for="agreement">Rooms</label>
+                            <label for="rooms">Rooms</label>
 
                             <div class="input-group">
                                 <input type="text" name="rooms" value="{{ old('rooms') }}"
@@ -208,7 +208,7 @@
                         </div>
 
                         <div class="col-6 mb-3">
-                            <label for="agreement">Bathrooms</label>
+                            <label for="bathrooms">Bathrooms</label>
 
                             <div class="input-group">
                                 <input type="text" name="bathrooms" value="{{ old('bathrooms') }}"
@@ -223,7 +223,7 @@
                         </div>
 
                         <div class="col-6 mb-3">
-                            <label for="agreement">Bedrooms</label>
+                            <label for="bedrooms">Bedrooms</label>
 
                             <div class="input-group">
                                 <input type="text" name="bedrooms" value="{{ old('bedrooms') }}"
@@ -238,7 +238,7 @@
                         </div>
 
                         <div class="col-6 mb-3">
-                            <label for="agreement">Floor</label>
+                            <label for="floor">Floor</label>
 
                             <div class="input-group">
                                 <input type="text" name="floor" value="{{ old('floor') }}"

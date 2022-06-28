@@ -7,6 +7,7 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PropertyRequest;
+use App\Http\Requests\SearchPropertiesRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\User;
 use App\Models\UserProperty;
@@ -16,6 +17,7 @@ class PropertyController extends Controller
 {
     public function home(){
         $counts = Property::all();
+        $cities = City::all();
         $countsRent = 0;
         $countsSale = 0;
         foreach ($counts as $count) {
@@ -27,7 +29,7 @@ class PropertyController extends Controller
           }
 
         $properties = Property::latest()->take(5)->get();
-        return view('frontend.index', ['properties' => $properties, 'countsSale' => $countsSale, 'countsRent' => $countsRent]);       
+        return view('frontend.index', ['properties' => $properties, 'cities' => $cities , 'countsSale' => $countsSale, 'countsRent' => $countsRent]);       
     }
 
     /**
@@ -257,6 +259,17 @@ class PropertyController extends Controller
         ]);
 
         return redirect()->back()->with('message', 'Property has been successfully updated!');
+    }
+
+    public function search(SearchPropertiesRequest $request){
+        $cities = City::all();
+
+        if(isset($_GET['agreement']) && isset($_GET['status']) && isset($_GET['location'])){
+            $properties = Property::where('agreement' , $_GET['agreement'])->where('status', $_GET['status'])->where('location', $_GET['location'])->paginate(6);
+
+        }
+
+        return view('frontend.properties', ['properties' => $properties, 'cities' => $cities]);
     }
 
     /**

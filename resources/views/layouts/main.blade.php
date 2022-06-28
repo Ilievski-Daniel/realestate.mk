@@ -27,79 +27,57 @@
         </div>
         <span class="close-box-collapse right-boxed bi bi-x"></span>
         <div class="box-collapse-wrap form">
-            <form class="form-a">
+            <form action="{{ route('search_properties') }}" class="form-a">
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <div class="form-group mt-3">
-                            <label class="pb-2" for="Type">Agreement</label>
-                            <a href="{{ route('properties') }}?agreement=sale">
-                            <select class="form-control form-select form-control-a" id="Type">
-                                <option>All Type</option>
-                                <option>For Rent</option>
-                                <option>For Sale</option>
-                                <option>Open House</option>
+                            <label for="agreement">Agreement</label>
+                            <select name="agreement" class="form-select" aria-label="agreement">
+                                <option value="any">Select type of agreement</option>
+                                <option value="Rent" @if (old('agreement') == 'Rent') selected @endif>Rent</option>
+                                <option value="Sale" @if (old('agreement') == 'Sale') selected @endif>Sale</option>
                             </select>
+                            @error('agreement')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group mt-3">
-                            <label class="pb-2" for="city">City</label>
-                            <select class="form-control form-select form-control-a" id="city">
-                                <option>All City</option>
-                                <option>Alabama</option>
-                                <option>Arizona</option>
-                                <option>California</option>
-                                <option>Colorado</option>
+                            <label for="status">Status</label>
+                            <select name="status" class="form-select" aria-label="status">
+                                <option value="any">Select status of the property</option>
+                                <option value="New"         @if (old('status') == 'New') selected @endif>New</option>
+                                <option value="Used"        @if (old('status') == 'Used') selected @endif>Used</option>
+                                <option value="Partly used" @if (old('status') == 'Partly used') selected @endif>Partly used</option>
                             </select>
+                            @error('status')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 mb-2">
                         <div class="form-group mt-3">
-                            <label class="pb-2" for="bedrooms">Bedrooms</label>
-                            <select class="form-control form-select form-control-a" id="bedrooms">
-                                <option>Any</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
+                            <label for="location">Location</label>
+                            <select name="location" class="form-select" aria-label="location">
+                                <option value="any" selected>Select location</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->name }}"
+                                        @if ($city->name == old('location')) selected @endif>{{ $city->name }}</option>
+                                @endforeach
                             </select>
+                            @error('location')
+                                <span style="color: red;">
+                                    <strong>{{ $message }}</strong><br>
+                                </span>
+                            @enderror
                         </div>
                     </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group mt-3">
-                            <label class="pb-2" for="garages">Garages</label>
-                            <select class="form-control form-select form-control-a" id="garages">
-                                <option>Any</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                                <option>04</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group mt-3">
-                            <label class="pb-2" for="bathrooms">Bathrooms</label>
-                            <select class="form-control form-select form-control-a" id="bathrooms">
-                                <option>Any</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <div class="form-group mt-3">
-                            <label class="pb-2" for="price">Min Price</label>
-                            <select class="form-control form-select form-control-a" id="price">
-                                <option>Unlimite</option>
-                                <option>$50,000</option>
-                                <option>$100,000</option>
-                                <option>$150,000</option>
-                                <option>$200,000</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-4">
                         <button type="submit" class="btn btn-b">Search Property</button>
                     </div>
                 </div>
