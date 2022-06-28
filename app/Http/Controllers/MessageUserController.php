@@ -33,8 +33,7 @@ class MessageUserController extends Controller
         ];
         
         Mail::to($sendToUser->email)->send(new MessageUserMail($user));
-        dd('done');
-        return redirect()->back()->with('message', 'Property has been successfully updated!');
+        return redirect()->back()->with('message', 'Message has been successfully sent to agent!');
     }
 
     public function deleteMessage($id){

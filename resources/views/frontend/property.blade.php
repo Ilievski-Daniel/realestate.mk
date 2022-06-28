@@ -179,6 +179,11 @@
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="property-agent">
+                  @if(session()->has('message'))
+                    <div class="alert alert-success">
+                      {{ session()->get('message') }}
+                    </div>
+                  @endif
                   <h4 class="title-agent">{{$user->name}} {{$user->last_name}}</h4>
                   <p class="color-text-a">
                     {{$user->description}}

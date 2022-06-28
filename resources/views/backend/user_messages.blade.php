@@ -38,7 +38,7 @@
                                     <td>{{ $count++ }}</td>
                                     <td>{{ $messageUser->name }}</td>
                                     <td>{{ $messageUser->email}}</td>
-                                    <td>{{ $messageUser->message}}m²</td>
+                                    <td>{{ $messageUser->message}}</td>
                                     <td>
                                         <form method="POST" action='/delete_message_user/{{ $messageUser->id }}'>
                                             @csrf
